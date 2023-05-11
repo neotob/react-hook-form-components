@@ -26,9 +26,13 @@ export const InternalFormProvider = <T extends FieldValues>(props: InternalFormC
   );
 };
 
-export const useInternalFormContext = () => {
+export const useInternalFormContext = (fallBackContext?: InternalFormContextProps<any>) => {
   const context = useContext(InternalFormContext);
   if (context === null) {
+    if (fallBackContext) {
+      return fallBackContext;
+    }
+
     throw new Error("useInternalFormContext must be used within a InternalFormContextProvider");
   }
   return context;

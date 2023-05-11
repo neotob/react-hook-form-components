@@ -18,7 +18,7 @@ const FormGroupLayout = <T extends FieldValues>(props: FormGroupLayoutProps<T>) 
     formState: { errors },
   } = useFormContext();
 
-  const { requiredFields } = useInternalFormContext();
+  const { requiredFields } = useInternalFormContext({ requiredFields: [] });
 
   const fieldError = get(errors, name) as FieldError | undefined;
   const errorMessage = String(fieldError?.message);
